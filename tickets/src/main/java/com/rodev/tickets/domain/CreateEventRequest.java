@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class CreateEventRequest {
     private LocalDate start;
     private LocalDate end;
     private String venue;
-    private LocalDate salesStart;
-    private LocalDate salesEnd;
+    private LocalDateTime salesStart;
+    private LocalDateTime salesEnd;
     private EventStatusEnum status;
     private List<CreateTicketTypeRequest>  ticketTypes = new ArrayList<>();
 
