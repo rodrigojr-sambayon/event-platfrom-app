@@ -16,8 +16,8 @@ import java.util.List;
 @NoArgsConstructor
 public class CreateEventRequest {
     private String name;
-    private LocalDate start;
-    private LocalDate end;
+    private LocalDateTime start;
+    private LocalDateTime end;
     private String venue;
     private LocalDateTime salesStart;
     private LocalDateTime salesEnd;
