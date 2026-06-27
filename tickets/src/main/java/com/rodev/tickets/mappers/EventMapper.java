@@ -2,10 +2,9 @@ package com.rodev.tickets.mappers;
 
 import com.rodev.tickets.domain.CreateEventRequest;
 import com.rodev.tickets.domain.CreateTicketTypeRequest;
-import com.rodev.tickets.domain.dtos.CreateEventRequestDto;
-import com.rodev.tickets.domain.dtos.CreateEventResponseDto;
-import com.rodev.tickets.domain.dtos.CreateTicketTypeRequestDto;
+import com.rodev.tickets.domain.dtos.*;
 import com.rodev.tickets.domain.entities.Event;
+import com.rodev.tickets.domain.entities.TicketType;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
 
@@ -17,6 +16,9 @@ public interface EventMapper {
 
     CreateEventResponseDto toDto(Event event);
 
+    ListEventTicketTypeResponseDto toDto(TicketType ticketType);
+
+    ListEventResponseDto toListEventResponseDto(Event event);
 
 
 
