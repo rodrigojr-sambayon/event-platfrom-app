@@ -28,15 +28,15 @@ public class EventController {
     private final EventMapper eventMapper;
 
     @PostMapping
-    public ResponseEntity<CreateEventRequestDto> createEvent(
+    public ResponseEntity<CreateEventResponseDto> createEvent(
             @AuthenticationPrincipal Jwt jwt,
             @Valid @RequestBody CreateEventRequestDto createEventRequestDto) {
-
+        System.out.printf("Post -> events");
         CreateEventRequest createEventRequest = eventMapper.fromDto(createEventRequestDto);
         UUID userId = UUID.fromString(jwt.getSubject());
 
         Event createdEvent = eventService.createEvent(userId, createEventRequest);
         CreateEventResponseDto createEventResponseDto = eventMapper.toDto(createdEvent);
-        return new ResponseEntity<>(createEventRequestDto, HttpStatus.CREATED);
+        return new ResponseEntity<>(createEventResponseDto, HttpStatus.CREATED);
     }
 }

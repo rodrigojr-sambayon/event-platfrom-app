@@ -10,7 +10,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table(name = "tickets_validations")
+@Table(name = "ticket_validations")
 @Getter
 @Setter
 @NoArgsConstructor
