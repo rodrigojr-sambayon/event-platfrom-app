@@ -1,4 +1,4 @@
-package com.rodev.tickets.domain;
+package com.rodev.tickets.domain.entities;
 
 public enum TicketValidationMethod {
     QR_SCAN, MANUAL

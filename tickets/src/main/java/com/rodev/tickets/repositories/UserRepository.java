@@ -1,6 +1,6 @@
 package com.rodev.tickets.repositories;
 
-import com.rodev.tickets.domain.User;
+import com.rodev.tickets.domain.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

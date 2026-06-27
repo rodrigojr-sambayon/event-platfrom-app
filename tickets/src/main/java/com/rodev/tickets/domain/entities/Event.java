@@ -1,4 +1,4 @@
-package com.rodev.tickets.domain;
+package com.rodev.tickets.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;

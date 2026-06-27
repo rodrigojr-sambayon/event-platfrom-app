@@ -1,6 +1,6 @@
 package com.rodev.tickets.filters;
 
-import com.rodev.tickets.domain.User;
+import com.rodev.tickets.domain.entities.User;
 import com.rodev.tickets.repositories.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
