@@ -22,7 +22,7 @@ import java.util.UUID;
 @RestController
 @RequestMapping(path = "/api/v1/events")
 @RequiredArgsConstructor
-public class EventController {
+public class EventsController {
 
     private final EventService eventService;
     private final EventMapper eventMapper;
