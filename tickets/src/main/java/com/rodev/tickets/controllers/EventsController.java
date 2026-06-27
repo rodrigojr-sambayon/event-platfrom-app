@@ -3,6 +3,7 @@ package com.rodev.tickets.controllers;
 import com.rodev.tickets.domain.CreateEventRequest;
 import com.rodev.tickets.domain.dtos.CreateEventRequestDto;
 import com.rodev.tickets.domain.dtos.CreateEventResponseDto;
+import com.rodev.tickets.domain.dtos.GetEventDetailsResponseDto;
 import com.rodev.tickets.domain.dtos.ListEventResponseDto;
 import com.rodev.tickets.domain.entities.Event;
 import com.rodev.tickets.mappers.EventMapper;
@@ -50,6 +51,19 @@ public class EventsController {
                 events.map(eventMapper::toListEventResponseDto)
         );
     }
+
+    @GetMapping(path = "/{event_id}")
+    public ResponseEntity<GetEventDetailsResponseDto> getEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID event_id){
+
+        UUID userId = parseUserId(jwt);
+        return eventService.getEventForOrganizer(userId, event_id)
+                .map(eventMapper::toGetEventDetailsResponseDto)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 
     private UUID parseUserId(Jwt jwt) {
         return UUID.fromString(jwt.getSubject());
