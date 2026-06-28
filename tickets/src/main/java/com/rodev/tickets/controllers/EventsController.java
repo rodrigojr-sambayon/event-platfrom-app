@@ -32,7 +32,6 @@ public class EventsController {
     public ResponseEntity<CreateEventResponseDto> createEvent(
             @AuthenticationPrincipal Jwt jwt,
             @Valid @RequestBody CreateEventRequestDto createEventRequestDto) {
-        System.out.printf("Post -> events");
         CreateEventRequest createEventRequest = eventMapper.fromDto(createEventRequestDto);
         UUID userId = parseUserId(jwt);
 
