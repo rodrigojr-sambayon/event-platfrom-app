@@ -1,10 +1,8 @@
 package com.rodev.tickets.controllers;
 
 import com.rodev.tickets.domain.CreateEventRequest;
-import com.rodev.tickets.domain.dtos.CreateEventRequestDto;
-import com.rodev.tickets.domain.dtos.CreateEventResponseDto;
-import com.rodev.tickets.domain.dtos.GetEventDetailsResponseDto;
-import com.rodev.tickets.domain.dtos.ListEventResponseDto;
+import com.rodev.tickets.domain.UpdateEventRequest;
+import com.rodev.tickets.domain.dtos.*;
 import com.rodev.tickets.domain.entities.Event;
 import com.rodev.tickets.mappers.EventMapper;
 import com.rodev.tickets.services.EventService;
@@ -61,6 +59,20 @@ public class EventsController {
                 .map(eventMapper::toGetEventDetailsResponseDto)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping(path = "/{eventId}")
+    public ResponseEntity<UpdateEventResponseDto> updateEvent(
+            @AuthenticationPrincipal Jwt jwt,
+            @PathVariable UUID eventId,
+            @Valid @RequestBody UpdateEventRequestDto updateEventRequestDto) {
+        UpdateEventRequest updateEventRequest = eventMapper.fromDto(updateEventRequestDto);
+        UUID userId = parseUserId(jwt);
+
+        Event updatedEvent = eventService.updateEventForOrganizer(userId, eventId, updateEventRequest);
+        UpdateEventResponseDto updateEventResponseDto = eventMapper.toUpdateEventResponseDto(updatedEvent);
+
+        return  ResponseEntity.ok(updateEventResponseDto);
     }
 
 
