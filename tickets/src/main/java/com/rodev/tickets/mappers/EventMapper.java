@@ -2,6 +2,8 @@ package com.rodev.tickets.mappers;
 
 import com.rodev.tickets.domain.CreateEventRequest;
 import com.rodev.tickets.domain.CreateTicketTypeRequest;
+import com.rodev.tickets.domain.UpdateEventRequest;
+import com.rodev.tickets.domain.UpdateTicketTypeRequest;
 import com.rodev.tickets.domain.dtos.*;
 import com.rodev.tickets.domain.entities.Event;
 import com.rodev.tickets.domain.entities.TicketType;
@@ -23,4 +25,12 @@ public interface EventMapper {
     GetEventDetailsTicketTypesResponseDto toGetEventDetailsTicketTypesResponseDto(TicketType ticketType);
 
     GetEventDetailsResponseDto toGetEventDetailsResponseDto(Event event);
+
+    UpdateTicketTypeRequest fromDto(UpdateTicketTypeRequestDto dto);
+
+    UpdateEventRequest fromDto(UpdateEventRequestDto dto);
+
+    UpdateTicketTypeResponseDto toUpdateTicketTypeResponseDto(TicketType ticketType);
+
+    UpdateEventResponseDto toUpdateEventResponseDto(Event event);
 }
