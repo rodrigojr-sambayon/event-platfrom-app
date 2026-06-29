@@ -22,7 +22,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(authorize ->
                         authorize
                             .requestMatchers(HttpMethod.GET, "/api/v1/published-events/**").permitAll()
-//                            .requestMatchers("/api/v1/events").hasRole("ORGANIZER")
+                            .requestMatchers("/api/v1/events").hasRole("ORGANIZER")
 //                            .requestMatchers("/api/v1/ticket-validations").hasRole("STAFF")
                         //Catch all rule
                         .anyRequest().authenticated())
@@ -31,7 +31,6 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(
-//                                Customizer.withDefaults()
                                 jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)
                         ))
                 .addFilterAfter(userProvisioningFilter, BearerTokenAuthenticationFilter.class);
