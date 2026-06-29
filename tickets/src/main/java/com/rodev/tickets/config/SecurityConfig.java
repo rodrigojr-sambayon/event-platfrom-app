@@ -31,8 +31,8 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 ->
                         oauth2.jwt(
-                                Customizer.withDefaults()
-//                                jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)
+//                                Customizer.withDefaults()
+                                jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)
                         ))
                 .addFilterAfter(userProvisioningFilter, BearerTokenAuthenticationFilter.class);
                 return http.build();
