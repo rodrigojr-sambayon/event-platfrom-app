@@ -28,18 +28,19 @@ public class PublishedEventController {
         Page<Event> events;
         if (null != q && !q.trim().isEmpty()) {
             events = eventService.searchPublishedEvents(q, pageable);
-        }else {
+        } else {
             events = eventService.listPublishedEvents(pageable);
         }
 
         return ResponseEntity.ok(
-                events.map(eventMapper::toListPublishedEventResponseDto));
+                events.map(eventMapper::toListPublishedEventResponseDto)
+        );
     }
 
     @GetMapping(path = "/{eventId}")
     public ResponseEntity<GetPublishedEventDetailsResponseDto> getPublishedEventDetails(
-            @PathVariable UUID eventId){
-
+            @PathVariable UUID eventId
+    ) {
         return eventService.getPublishedEvent(eventId)
                 .map(eventMapper::toGetPublishedEventDetailsResponseDto)
                 .map(ResponseEntity::ok)

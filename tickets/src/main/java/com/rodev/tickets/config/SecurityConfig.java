@@ -21,19 +21,21 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize ->
                         authorize
-                            .requestMatchers(HttpMethod.GET, "/api/v1/published-events/**").permitAll()
-                            .requestMatchers("/api/v1/events").hasRole("ORGANIZER")
-//                            .requestMatchers("/api/v1/ticket-validations").hasRole("STAFF")
-                        //Catch all rule
-                        .anyRequest().authenticated())
-                .csrf(csrf ->csrf.disable())
+                                .requestMatchers(HttpMethod.GET, "/api/v1/test").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/api/v1/published-events/**").permitAll()
+                                .requestMatchers("/api/v1/events").hasRole("ORGANIZER")
+                                .requestMatchers("/api/v1/ticket-validations").hasRole("STAFF")
+                                // Catch all rule
+                                .anyRequest().authenticated())
+                .csrf(csrf -> csrf.disable())
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 ->
-                        oauth2.jwt(
-                                jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter)
+                        oauth2.jwt(jwt ->
+                                jwt.jwtAuthenticationConverter(jwtAuthenticationConverter) // <= This here
                         ))
                 .addFilterAfter(userProvisioningFilter, BearerTokenAuthenticationFilter.class);
-                return http.build();
+
+        return http.build();
     }
 }
